@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.core.validators import MinLengthValidator, MaxLengthValidator
+from django.core.validators import MinLengthValidator, MaxLengthValidator, RegexValidator
 from django.db import models
 
 
@@ -8,7 +8,11 @@ class Profile(models.Model):
     username = models.CharField(max_length=16)
     description = models.TextField()
     signature = models.TextField()
-    profile_color = models.CharField(max_length=8, validators=[MinLengthValidator(8)])
+    profile_color = models.CharField(max_length=8,
+                                     validators=[MinLengthValidator(8),
+                                                 RegexValidator(r'^[0-9a-f]{8}$')])
+
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):

@@ -5,4 +5,4 @@ from forum_profile.models import Profile
 class ProfileCreationForm(forms.ModelForm):
     class Meta:
         model = Profile
-        field = '__all__'
+        exclude = ['id', 'user']

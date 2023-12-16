@@ -1,3 +1,5 @@
+from django.utils.deprecation import MiddlewareMixin
+
 from forum_profile.models import Profile
 
 
